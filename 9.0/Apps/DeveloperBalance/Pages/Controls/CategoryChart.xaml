@@ -7,6 +7,7 @@
         xmlns:pageModels="clr-namespace:DeveloperBalance.PageModels"
         x:Class="DeveloperBalance.Pages.Controls.CategoryChart"
         HeightRequest="{OnIdiom 300, Phone=200}"
+        SemanticProperties.Description="Task Categories Chart"
         Style="{StaticResource CardStyle}">
     <shimmer:SfShimmer
         BackgroundColor="Transparent"
@@ -30,7 +31,7 @@
                     ShowDataLabels="True"
                     EnableTooltip="False"
                     x:Name="doughnutSeries"
-                    Radius="{OnIdiom 0.7, Phone=0.5}"
+                    Radius="{OnIdiom 0.6, Phone=0.5}"
                     InnerRadius="0.7" >
                     <chart:DoughnutSeries.LabelTemplate>
                         <DataTemplate >
