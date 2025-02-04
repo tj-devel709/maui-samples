@@ -156,7 +156,6 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 		OnPropertyChanged(nameof(HasCompletedTasks));
 	}
 
-
 	[RelayCommand]
 	private async Task Save()
 	{
@@ -234,6 +233,13 @@ public partial class ProjectDetailPageModel : ObservableObject, IQueryAttributab
 	[RelayCommand]
 	private Task NavigateToTask(ProjectTask task) =>
 		Shell.Current.GoToAsync($"task?id={task.ID}");
+
+		
+	[RelayCommand]
+	private async Task TappedIcon()
+	{
+		// TODO Shane - this is the method I want to call
+	}
 
 	[RelayCommand]
 	private async Task ToggleTag(Tag tag)

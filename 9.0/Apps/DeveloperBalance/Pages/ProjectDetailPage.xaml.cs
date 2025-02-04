@@ -10,4 +10,8 @@ public partial class ProjectDetailPage : ContentPage
 
 		BindingContext = model;
 	}
+
+    private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    {
+    }
 }

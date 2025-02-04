@@ -20,7 +20,10 @@
                         Padding="{OnPlatform '18,0,18,8',Android='18,0,18,0'}"
                         SemanticProperties.Description="{Binding Title}">
                         <Border.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ToggleTagCommand, Source={RelativeSource AncestorType={x:Type pageModels:ProjectDetailPageModel}}, x:DataType=pageModels:ProjectDetailPageModel}" CommandParameter="{Binding .}"/>
+                            <!-- TODO Shane - this is the similar code location and where I am able to call the TappedIconCommand -->
+                            <!-- <TapGestureRecognizer Command="{Binding ToggleTagCommand, Source={RelativeSource AncestorType={x:Type pageModels:ProjectDetailPageModel}}, x:DataType=pageModels:ProjectDetailPageModel}" CommandParameter="{Binding .}"/> -->
+                            <TapGestureRecognizer Command="{Binding TappedIconCommand, Source={RelativeSource AncestorType={x:Type pageModels:ProjectDetailPageModel}}, x:DataType=pageModels:ProjectDetailPageModel}"/>
+
                         </Border.GestureRecognizers>
                         <Label Text="{Binding Title}"
                             TextColor="{AppThemeBinding Light={StaticResource DarkOnLightBackground},Dark={StaticResource LightOnDarkBackground}}"
@@ -91,16 +94,15 @@
                     Style="{StaticResource Title2}"/>
                 <CollectionView 
                     HeightRequest="44" Margin="0,0,0,15"
-                    SelectionMode="Single"
                     
-                    SelectedItem="{Binding Icon}"
+                    
                     ItemsSource="{Binding Icons}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:IconData">
                             <Grid RowDefinitions="Auto,4" RowSpacing="{StaticResource size60}"
                                  SemanticProperties.Description="{Binding Description}"
                                  SemanticProperties.Hint="Icon representing the type of task . Tap to select">
-                                <VisualStateManager.VisualStateGroups>
+                                <!-- <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="CommonStates">
                                         <VisualState x:Name="Normal">
                                             <VisualState.Setters>
@@ -116,7 +118,7 @@
                                             </VisualState.Setters>
                                         </VisualState>
                                     </VisualStateGroup>
-                                </VisualStateManager.VisualStateGroups>
+                                </VisualStateManager.VisualStateGroups> -->
                                 
                                 <Label 
                                     Text="{Binding Icon}"
@@ -126,8 +128,19 @@
                                     VerticalOptions="Center"
                                     HorizontalOptions="Center"
                                     TextColor="{AppThemeBinding Light={StaticResource DarkOnLightBackground},Dark={StaticResource LightOnDarkBackground}}"/>
-                                <BoxView x:Name="SelectedIndicator" Color="{StaticResource Primary}" HeightRequest="4" HorizontalOptions="Fill" Grid.Row="1"/>
-                            </Grid>                            
+                                <!-- <BoxView x:Name="SelectedIndicator" Color="{StaticResource Primary}" HeightRequest="4" HorizontalOptions="Fill" Grid.Row="1"/> -->
+
+                                <!-- TODO Shane - This is where I am trying to call the TappedIconCommand but am not able to -->
+                                <Grid.GestureRecognizers>
+                                    <!-- <TapGestureRecognizer Command="{Binding TappedIconCommand, Source={RelativeSource AncestorType={x:Type pageModels:ProjectDetailPageModel}}, x:DataType=pageModels:ProjectDetailPageModel}"/> -->
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type pageModels:ProjectDetailPageModel}}, Path=TappedIconCommand,x:DataType=pageModels:ProjectDetailPageModel}"/>
+                                    <!-- <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type pageModels:ProjectDetailPageModel}}, Path=ToggleTagCommand,x:DataType=pageModels:ProjectDetailPageModel}"  CommandParameter="{Binding .}"/> -->
+                                    <!-- <TapGestureRecognizer Command="{Binding TappedIconCommand}"/> -->
+                                    <!-- <Button Text="Delete" Grid.Column="2" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EmployeeViewModel}}, Path=DeleteEmployeeCommand,x:DataType=viewmodels:EmployeeViewModel}" CommandParameter="{Binding .}"> </Button> -->
+
+                                    <!-- <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/> -->
+                                </Grid.GestureRecognizers>
+                            </Grid>               
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                     <CollectionView.ItemsLayout>
